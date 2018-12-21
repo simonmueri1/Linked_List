@@ -3,8 +3,8 @@
 
 void sequences();
 void printMenu();
-void scanChar();
-struPerson* createList(int Anzahl)
+void scanInput();
+struPerson* createList(int Anzahl) {}
 
 void main() {
 	sequences();
@@ -18,22 +18,20 @@ typedef struct Person {
 } struPerson;
 
 void sequences() {
-	char input[30];
-
 	printMenu();
-	input = scanChar();
+	int input = scanInput();
 
 	switch (input)
-		case CL:	
+		case 1:	
 					createList();
 					break;
-		case DL: 
+		case 2: 
 				break;
-		case PE:
+		case 3:
 				break;
-		case DE:
+		case 4:
 				break;
-		case XX:
+		case 5:
 				break;
 
 	system("pause");
@@ -43,40 +41,43 @@ void printMenu() {
 	printf("_________________________________________________________________\n");
 	printf("LINKED LIST - APP from Simon Mueri & Michel Leisibach v1.0\n");
 	printf("_________________________________________________________________\n");
-	printf("Create List\t\t = [CL]\n");
-	printf("Delete List\t\t = [DL]\n");
-	printf("Print List Elements\t\ = [PE]\n");
-	printf("Print all\t\t = [PE0]\n");
-	printf("Delete Element\t\t = [DE]\n");
-	printf("End Program\t\t = [XX]\n");
+	printf("Create List\t\t = [1]\n");
+	printf("Delete List\t\t = [2]\n");
+	printf("Print List Elements\t\ = [3]\n");
+	printf("Delete Element\t\t = [4]\n");
+	printf("End Program\t\t = [5]\n");
 	printf("_________________________________________________________________\n\n");
 }
 
-char scanChar() {
-	char input[];
-	scanf_s(input);
+int scanInput() {
+	char input = NULL;
+	scanf_s("%c", input); 
 
 	//start programm new if input is not valid.
-	if (input != "CL" || input != "DL" || input != "PE" || input != "PE0" || input != "DE" || input != "XX") {
+	if (input > 0 && input < 6) {
+		return input;
+	}
+
+	else {
 		printf("Please enter a valid entry.");
 		system("cls");
 		main();
 	}
-
-	return input;
+	
 }
 
-int scanNumber(){
-	int number = 0;
+int scanNumber() {
+	char number = 0;
 	printf("Enter a number.");
-	scanf_s(number);
+	scanf_s("%c", number);
 
-	if (number != 0..9) {
-		printf("Please enter a vaild number.\n")
+	if (number > 10 && number < 0) {
+		printf("Please enter a vaild number.\n");
 			scanNumber();
-	}														
+	}
 
 	return number;
+}
 
 
 struPerson* createList(int Anzahl) {
