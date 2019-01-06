@@ -3,8 +3,11 @@
 
 void sequences();
 void printMenu();
-void scanInput();
-struPerson* createList(int Anzahl) {}
+void createFirstPerson();
+void addPerson();
+int randomNumber();
+//void scanInput();
+//struPerson* createList(int Anzahl) {}
 
 void main() {
 	sequences();
@@ -21,18 +24,39 @@ void sequences() {
 	printMenu();
 	int input = scanInput();
 
-	switch (input)
-		case 1:	
-					createList();
-					break;
-		case 2: 
-				break;
-		case 3:
-				break;
-		case 4:
-				break;
-		case 5:
-				break;
+	switch (input) {
+	case 1:
+		printf("How many people do you want to create? ");
+		int numberOfElements = 0;
+		scanf("%d", &numberOfElements);
+		fgetchar();
+		for (int i = 1; i <= numberOfElements; i++) {
+			if (i = 1)
+				createFirstPerson();
+			else
+				addPerson();
+		}
+		break;
+
+	case 2:
+
+		break;
+
+	case 3:
+
+		break;
+
+	case 4:
+
+		break;
+
+	case 5:
+
+		break;
+
+	default:
+		break;
+	}
 
 	system("pause");
 }
@@ -51,21 +75,32 @@ void printMenu() {
 
 int scanInput() {
 	char input = NULL;
-	scanf_s("%c", input); 
+	scanf_s("%c", input);
 
 	//start programm new if input is not valid.
 	if (input > 0 && input < 6) {
 		return input;
 	}
-
 	else {
 		printf("Please enter a valid entry.");
 		system("cls");
-		main();
+		//was machen wenn input ungültig ist
 	}
-	
 }
+	
+void createFirstPerson() {
+	struPerson* firstPerson = NULL;
+	firstPerson = malloc(sizeof(struPerson));
 
+	if (firstPerson == NULL)
+		return;
+
+	firstPerson->Vorname = 'A' + rand() % 26;
+	firstPerson->Nachname = 'A' + rand() % 26;
+	firstPerson->Jahrgang = randomNumber();
+	firstPerson->pNext = NULL;
+}
+/*
 int scanNumber() {
 	char number = 0;
 	printf("Enter a number.");
@@ -77,9 +112,9 @@ int scanNumber() {
 	}
 
 	return number;
-}
+}*/
 
-
+/*
 struPerson* createList(int Anzahl) {
 	// Erstellt eine Liste von definierter Anzahl Elementen.
 	struPerson* pStart = NULL;
@@ -94,4 +129,12 @@ struPerson* createList(int Anzahl) {
 		pLast = pNew;
 	}
 	return pStart;
-}
+}*/
+
+	int randomNumber()
+	{
+		int result = 0, low_num = 1900, hi_num = 2018;
+		
+		result = (rand() % (hi_num - low_num)) + low_num;
+		return result;
+	}
