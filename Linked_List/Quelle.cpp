@@ -18,7 +18,7 @@ int scanNumber();
 void printList(struPerson* element, int number);
 int countElements(struPerson* firstPerson);
 struPerson* deleteList(struPerson* firstPerson);
-void deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]);
+struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]);
 
 int main() {
 	sequences();
@@ -62,13 +62,12 @@ void sequences() {
 			break;
 		case 4:
 			printf("Enter Vorname: ");
-			scanf_s("%c", &vorname, 1);
+			scanf_s(" %c", &vorname);
 			getchar();
 			printf("Enter Nachname: ");
-			scanf_s("%c", &nachname, 1);
+			scanf_s(" %c", &nachname);
 			getchar();
-			printf("%s %s\n", vorname, nachname);
-			//deleteElements(firstPerson, vorname, nachname);
+			firstPerson = deleteElements(firstPerson, vorname, nachname);
 			break;
 			
 		case 5:
@@ -211,6 +210,38 @@ struPerson* deleteList(struPerson* firstPerson) {
 	return firstPerson;
 }
 
-void deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]) {
-	printf("%s %s\n", vorname[0], nachname[0]);
+struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]) {
+	printf("element to delete: %c %c\n", vorname[0], nachname[0]);
+
+	struPerson* current = firstPerson;
+	struPerson* previous = NULL;
+
+	while (current != NULL && firstPerson != NULL) {
+		if (current->Vorname[0] == vorname[0] && current->Nachname[0] == nachname[0]) {
+			if (firstPerson->pNext == NULL) {
+				free(firstPerson);
+				firstPerson = NULL;
+			}
+			else if(previous == NULL){
+				struPerson* personToDelete = firstPerson;
+				firstPerson = firstPerson->pNext;
+				current = firstPerson;
+				free(personToDelete);
+				personToDelete = NULL;
+			}
+			else {
+				previous->pNext = current->pNext;
+				free(current);
+				current = NULL;
+			}
+		}
+		if (current == NULL) {
+			current = previous->pNext;
+		}
+		else {
+			previous = current;
+			current = current->pNext;
+		}
+	}
+	return firstPerson;
 }
