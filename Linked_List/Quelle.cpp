@@ -195,24 +195,25 @@ int countElements(struPerson* firstPerson) {
 }
 
 struPerson* deleteList(struPerson* firstPerson) {
-	if (firstPerson != NULL) {
-		if (firstPerson->pNext == NULL) {
-			free(firstPerson);
-			firstPerson = NULL;
-		}
-		else {
-			struPerson* personToDelete = firstPerson;
-			firstPerson = firstPerson->pNext;
-			free(personToDelete);
-			personToDelete = NULL;
+	int numberOfElements = countElements(firstPerson);
+	for (int i = 0; i < numberOfElements; i++) {
+		if (firstPerson != NULL) {
+			if (firstPerson->pNext == NULL) {
+				free(firstPerson);
+				firstPerson = NULL;
+			}
+			else {
+				struPerson* personToDelete = firstPerson;
+				firstPerson = firstPerson->pNext;
+				free(personToDelete);
+				personToDelete = NULL;
+			}
 		}
 	}
 	return firstPerson;
 }
 
 struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]) {
-	printf("element to delete: %c %c\n", vorname[0], nachname[0]);
-
 	struPerson* current = firstPerson;
 	struPerson* previous = NULL;
 
