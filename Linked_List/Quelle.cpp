@@ -19,6 +19,10 @@ void printList(struPerson* element, int number);
 int countElements(struPerson* firstPerson);
 struPerson* deleteList(struPerson* firstPerson);
 struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]);
+void sortlist(struPerson* firstPerson);
+
+
+
 
 int main() {
 	sequences();
@@ -34,6 +38,8 @@ void sequences() {
 	struPerson* firstPerson = NULL;
 	char vorname[40];
 	char nachname[40];
+	int sortvalue;
+
 	
 	printMenu();
 	
@@ -74,8 +80,14 @@ void sequences() {
 			exit(0);
 			break;
 
-		/*case 6:
-			break;*/
+		case 6:
+			printf("Sort by *Vorname*");
+			scanf_s("%i", &sortvalue);
+			getchar();
+			if (sortvalue = 1) {
+				sortlist(firstPerson);
+			}
+			break;
 
 		case 7:
 			printMenu();
@@ -244,4 +256,22 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 		}
 	}
 	return firstPerson;
+}
+
+void sortlist(struPerson* firstPerson) {
+
+	struPerson *i, *j;
+	int temp;
+	for (i = firstPerson; i->pNext != NULL; i = i->pNext) {
+		for (j = i->pNext; j != NULL; j = j->pNext) {
+			if (i->Jahrgang > j->Jahrgang) {
+				temp = i->Jahrgang;
+				i->Jahrgang = j->Jahrgang;
+				j->Jahrgang = temp;	
+				
+			}
+		}
+	}
+	printMenu();
+	
 }
