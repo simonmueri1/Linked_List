@@ -1,6 +1,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "time.h"
+#include "string.h"
 
 typedef struct Person {
 	char Vorname[40];
@@ -15,11 +16,13 @@ struPerson* createFirstPerson(struPerson* firstPerson);
 void addPerson(struPerson* head);
 int randomNumber();
 int scanNumber();
+int sortvalue;
 void printList(struPerson* element, int number);
 int countElements(struPerson* firstPerson);
 struPerson* deleteList(struPerson* firstPerson);
 struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]);
 void sortlist(struPerson* firstPerson);
+bool personnamesize(Person* person1, Person* person2);
 
 
 
@@ -38,7 +41,7 @@ void sequences() {
 	struPerson* firstPerson = NULL;
 	char vorname[40];
 	char nachname[40];
-	int sortvalue;
+	
 
 	
 	printMenu();
@@ -81,12 +84,13 @@ void sequences() {
 			break;
 
 		case 6:
-			printf("Sort by *Vorname*");
+			printf("By wich criteria do you wanna sort?\n");
+			printf("Sort by 'Datum'		[1]\n");
+			printf("Sort by 'Vorname'	[2]\n");
+			printf("Sort by 'Nachname'	[3]\n");
 			scanf_s("%i", &sortvalue);
 			getchar();
-			if (sortvalue = 1) {
-				sortlist(firstPerson);
-			}
+			sortlist(firstPerson);
 			break;
 
 		case 7:
@@ -260,18 +264,37 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 
 void sortlist(struPerson* firstPerson) {
 
-	struPerson *i, *j;
+	struPerson* element1;
+	struPerson* element2;
 	int temp;
-	for (i = firstPerson; i->pNext != NULL; i = i->pNext) {
-		for (j = i->pNext; j != NULL; j = j->pNext) {
-			if (i->Jahrgang > j->Jahrgang) {
-				temp = i->Jahrgang;
-				i->Jahrgang = j->Jahrgang;
-				j->Jahrgang = temp;	
-				
+	int compare(char[], char[]);
+	
+	if (firstPerson != NULL) {
+		if (sortvalue == 1) {
+			for (element1 = firstPerson; element1->pNext != NULL; element1 = element1->pNext) {
+				for (element2 = element1->pNext; element2 != NULL; element2 = element2->pNext) {
+					if (element1->Jahrgang > element2->Jahrgang) {
+						temp = element1->Jahrgang;
+						element1->Jahrgang = element2->Jahrgang;
+						element2->Jahrgang = temp;
+					}
+				}
 			}
 		}
 	}
-	printMenu();
-	
-}
+	else if (sortvalue == 2) {
+		for (element1 = firstPerson; element1 != NULL; element1 = element1->pNext) {
+		
+		}
+	}
+
+	else if (sortvalue == 3) {
+
+	}
+		
+		else {
+			printf("Please create first a List!");
+			getchar();
+			printMenu();
+		}
+	}
