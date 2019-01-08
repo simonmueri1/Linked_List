@@ -26,14 +26,16 @@ int main() {
 }
 
 void sequences() {
+	//define randomness
 	srand((unsigned)time(NULL));
 	Person *pHead = NULL;
 
-	printMenu();
 	int numberOfElements = 0;
 	struPerson* firstPerson = NULL;
 	char vorname[40];
 	char nachname[40];
+	
+	printMenu();
 	
 	while (true) {
 		switch (scanNumber()) {
@@ -45,9 +47,7 @@ void sequences() {
 				if (i == 1)
 					firstPerson = createFirstPerson(firstPerson);
 				else
-				{
 					addPerson(firstPerson);
-				}
 			}
 			break;
 			
@@ -102,7 +102,6 @@ void printMenu() {
 }
 	
 struPerson* createFirstPerson(struPerson* firstPerson) {
-
 	firstPerson = (struPerson*)malloc(sizeof(struPerson));
 
 	if (firstPerson == NULL)
