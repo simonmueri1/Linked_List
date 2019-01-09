@@ -266,8 +266,10 @@ void sortlist(struPerson* firstPerson) {
 
 	struPerson* element1;
 	struPerson* element2;
+	Person* Person1;
+	Person* Person2;
 	int temp;
-	int compare(char[], char[]);
+	char temp2[40];
 	
 	if (firstPerson != NULL) {
 		if (sortvalue == 1) {
@@ -283,8 +285,27 @@ void sortlist(struPerson* firstPerson) {
 		}
 	}
 	else if (sortvalue == 2) {
-		for (element1 = firstPerson; element1 != NULL; element1 = element1->pNext) {
+
 		
+
+		for (element1 = firstPerson; element1 != NULL; element1->pNext) {
+			for (element2 = element1->pNext; element2 != NULL; element2 = element2->pNext) {
+
+				Person1 = element1;
+				Person2 = element2;
+
+				while (strcmp(Person1->Vorname, Person2->Vorname) > 0) {
+					
+					while (strcmp(Person1->Nachname, Person2->Nachname) > 0) {
+
+						/*temp2 = element1->Vorname;
+						element1->Vorname = element2->Vorname;
+						element2->Vorname = temp2;*/
+
+					}
+
+				}
+			}
 		}
 	}
 
@@ -298,3 +319,7 @@ void sortlist(struPerson* firstPerson) {
 			printMenu();
 		}
 	}
+
+
+
+
