@@ -22,7 +22,7 @@ int countElements(struPerson* firstPerson);
 struPerson* deleteList(struPerson* firstPerson);
 struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]);
 void sortlist(struPerson* firstPerson);
-bool personnamesize(Person* person1, Person* person2);
+
 
 
 
@@ -269,7 +269,6 @@ void sortlist(struPerson* firstPerson) {
 	Person* Person1;
 	Person* Person2;
 	int temp;
-	char temp2[40];
 	
 	if (firstPerson != NULL) {
 		if (sortvalue == 1) {
@@ -284,27 +283,35 @@ void sortlist(struPerson* firstPerson) {
 			}
 		}
 	}
-	else if (sortvalue == 2) {
+
+	else {
+		printf("Please create first a List!");
+		getchar();
+		printMenu();
+	}
+	if (sortvalue == 2) {
 
 		
 
+
 		for (element1 = firstPerson; element1 != NULL; element1->pNext) {
-			for (element2 = element1->pNext; element2 != NULL; element2 = element2->pNext) {
+			for (element2 = element1->pNext; element2 != NULL; element2 = element2->pNext){
 
-				Person1 = element1;
-				Person2 = element2;
-
-				while (strcmp(Person1->Vorname, Person2->Vorname) > 0) {
+				//if (strcmp(element2->Vorname, element2->Vorname) > 0) {
+					char temp1 = element1->Vorname[40];
+					element1->Vorname[40] = element2->Vorname[40];
+					element1->Vorname[40] = temp1;
+				//}
 					
-					while (strcmp(Person1->Nachname, Person2->Nachname) > 0) {
+	
 
-						/*temp2 = element1->Vorname;
+						/*temp1 = element1->Vorname;
 						element1->Vorname = element2->Vorname;
 						element2->Vorname = temp2;*/
 
-					}
+					
 
-				}
+				
 			}
 		}
 	}
@@ -313,12 +320,11 @@ void sortlist(struPerson* firstPerson) {
 
 	}
 		
-		else {
-			printf("Please create first a List!");
-			getchar();
-			printMenu();
-		}
+
 	}
+
+
+
 
 
 
