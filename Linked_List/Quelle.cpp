@@ -24,14 +24,12 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 void sortlist(struPerson* firstPerson);
 
 
-
-
-
 int main() {
 	sequences();
 	return 0;
 }
 
+//creator: Michel
 void sequences() {
 	//define randomness
 	srand((unsigned)time(NULL));
@@ -41,8 +39,6 @@ void sequences() {
 	struPerson* firstPerson = NULL;
 	char vorname[40];
 	char nachname[40];
-	
-
 	
 	printMenu();
 	
@@ -54,8 +50,10 @@ void sequences() {
 			getchar();
 			for (int i = 1; i <= numberOfElements; i++) {
 				if (i == 1)
+					//first node is created differntly
 					firstPerson = createFirstPerson(firstPerson);
 				else
+					//create other nodes normal
 					addPerson(firstPerson);
 			}
 			break;
@@ -103,6 +101,7 @@ void sequences() {
 	}
 }
 
+//creator: Michel
 void printMenu() {
 	printf("_________________________________________________________________\n");
 	printf("LINKED LIST - APP from Simon Mueri & Michel Leisibach v1.0\n");
@@ -116,7 +115,8 @@ void printMenu() {
 	printf("Print menu\t\t = [7]\n");
 	printf("_________________________________________________________________\n\n");
 }
-	
+
+//creator: Simon
 struPerson* createFirstPerson(struPerson* firstPerson) {
 	firstPerson = (struPerson*)malloc(sizeof(struPerson));
 
@@ -124,7 +124,7 @@ struPerson* createFirstPerson(struPerson* firstPerson) {
 		return firstPerson;
 
 	firstPerson->Vorname[0] = 'A' + rand() % 26;
-	firstPerson->Vorname[1] = '\0';
+	firstPerson->Vorname[1] = '\0';		//'\0' to end char Array
 	firstPerson->Nachname[0] = 'A' + rand() % 26;
 	firstPerson->Nachname[1] = '\0';
 	firstPerson->Jahrgang = randomNumber();
@@ -133,6 +133,7 @@ struPerson* createFirstPerson(struPerson* firstPerson) {
 	return firstPerson;
 }
 
+//creator: Simon
 void addPerson(struPerson* head) {
 	struPerson* current = head;
 	while (current->pNext != NULL) {
@@ -148,6 +149,7 @@ void addPerson(struPerson* head) {
 	current->pNext->pNext = NULL;
 }
 
+//creator: Simon
 int scanNumber() {
 	int number;
 	printf("Enter a menu number: ");
@@ -164,6 +166,7 @@ int scanNumber() {
 	}
 }
 
+//creator: Simon
 int randomNumber()
 {
 	int result = 0, low_num = 1900, hi_num = 2018;
@@ -172,6 +175,7 @@ int randomNumber()
 	return result;
 }
 
+//creator: Simon
 void printList(struPerson* element, int number) {
 
 	if (countElements(element) < 1) {
@@ -194,6 +198,7 @@ void printList(struPerson* element, int number) {
 	}
 }
 
+//creator: Simon
 int countElements(struPerson* firstPerson) {
 	struPerson* current = firstPerson;
 	int numberOfElements = 0;
@@ -209,10 +214,12 @@ int countElements(struPerson* firstPerson) {
 	return numberOfElements;
 }
 
+//creator: Simon
 struPerson* deleteList(struPerson* firstPerson) {
 	int numberOfElements = countElements(firstPerson);
 	for (int i = 0; i < numberOfElements; i++) {
 		if (firstPerson != NULL) {
+			//if List only has one node
 			if (firstPerson->pNext == NULL) {
 				free(firstPerson);
 				firstPerson = NULL;
@@ -228,16 +235,19 @@ struPerson* deleteList(struPerson* firstPerson) {
 	return firstPerson;
 }
 
+//creator: Simon
 struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachname[40]) {
 	struPerson* current = firstPerson;
 	struPerson* previous = NULL;
 
 	while (current != NULL && firstPerson != NULL) {
 		if (current->Vorname[0] == vorname[0] && current->Nachname[0] == nachname[0]) {
+			//if list only has one node to delete
 			if (firstPerson->pNext == NULL) {
 				free(firstPerson);
 				firstPerson = NULL;
 			}
+			//if first node has to be deleted
 			else if(previous == NULL){
 				struPerson* personToDelete = firstPerson;
 				firstPerson = firstPerson->pNext;
@@ -245,6 +255,7 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 				free(personToDelete);
 				personToDelete = NULL;
 			}
+			//if other nodes has to be deleted
 			else {
 				previous->pNext = current->pNext;
 				free(current);
@@ -262,6 +273,7 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 	return firstPerson;
 }
 
+//creator: Michel
 void sortlist(struPerson* firstPerson) {
 	clock_t startTime = clock();
 	struPerson* firstElement;
