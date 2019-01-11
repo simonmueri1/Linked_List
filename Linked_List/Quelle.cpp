@@ -276,6 +276,7 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 }
 
 //creator: Michel
+//Compare two Nodes and change if the secondElement is smaller than the firstElement.
 void sortlist(struPerson* firstPerson) {
 	clock_t startTime = clock();
 	struPerson* firstElement;
