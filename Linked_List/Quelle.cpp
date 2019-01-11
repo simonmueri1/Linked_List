@@ -263,7 +263,7 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 }
 
 void sortlist(struPerson* firstPerson) {
-
+	clock_t startTime = clock();
 	struPerson* firstElement;
 	struPerson* secondElement;
 	int tempInt;
@@ -326,4 +326,8 @@ void sortlist(struPerson* firstPerson) {
 		printf("Please create a List first!");
 		getchar();
 	}
+
+	clock_t endTime = clock();
+	double timeSpent = (double)(endTime - startTime) / CLOCKS_PER_SEC;
+	printf("Time for sorting: %f seconds\n", timeSpent);
 }
