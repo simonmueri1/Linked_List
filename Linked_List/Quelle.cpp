@@ -183,16 +183,18 @@ void printList(struPerson* element, int number) {
 		return;
 	}
 	
+	printf("Jahrgang:\tVorname:\tNachname:\n");
+
 	struPerson* current = element;
 	if (number == 0) {
 		while (current != NULL) {
-			printf("%i\t %s\t %s\n",current->Jahrgang, current->Vorname, current->Nachname);
+			printf("%i\t\t %s\t\t %s\n",current->Jahrgang, current->Vorname, current->Nachname);
 			current = current->pNext;
 		}
 	}
 	else {
 		for (int i = 1; current != NULL && i <= number; i++) {
-			printf("%i\t %s\t %s\n", current->Jahrgang, current->Vorname, current->Nachname);
+			printf("%i\t\t %s\t\t %s\n", current->Jahrgang, current->Vorname, current->Nachname);
 			current = current->pNext;
 		}
 	}
