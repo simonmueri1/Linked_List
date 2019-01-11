@@ -266,8 +266,7 @@ void sortlist(struPerson* firstPerson) {
 
 	struPerson* firstElement;
 	struPerson* secondElement;
-	int tempInt
-		;
+	int tempInt;
 	char tempChar[40];
 	
 	if (firstPerson != NULL) {
@@ -284,55 +283,47 @@ void sortlist(struPerson* firstPerson) {
 		}
 	}
 
-	else {
-		printf("Please create first a List!");
-		getchar();
-		printMenu();
-	}
-	if (sortvalue == 2) {
+	if (firstPerson != NULL) {
+		if (sortvalue == 2) {
+			for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
+				for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext) {
+					char Person1[40];
+					char Person2[40];
 
-		
+					strcpy_s(Person1, firstElement->Vorname);
+					strcpy_s(Person2, secondElement->Vorname);
 
-
-		for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
-			for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext){
-				char Person1[40];
-				char Person2[40];
-				strcpy_s(Person1, firstElement->Vorname);
-				strcpy_s(Person2, secondElement->Vorname);
-				if (strcmp(Person1, Person2) > 0) {
-					strcpy_s(tempChar, firstElement->Vorname);
-					strcpy_s(firstElement->Vorname, secondElement->Vorname);
-					strcpy_s(secondElement->Vorname, tempChar);
-				}			
-			}
-		}
-
-		
-	}
-
-	else if (sortvalue == 3) {
-		for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
-			for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext) {
-				char firstPerson[40];
-				char secondPerson[40];
-				strcpy_s(firstPerson, firstElement->Nachname);
-				strcpy_s(secondPerson, secondElement->Nachname);
-				if (strcmp(firstPerson, secondPerson) > 0) {
-					strcpy_s(tempChar, firstElement->Nachname);
-					strcpy_s(firstElement->Nachname, secondElement->Nachname);
-					strcpy_s(secondElement->Nachname, tempChar);
+					if (strcmp(Person1, Person2) > 0) {
+						strcpy_s(tempChar, firstElement->Vorname);
+						strcpy_s(firstElement->Vorname, secondElement->Vorname);
+						strcpy_s(secondElement->Vorname, tempChar);
+					}
 				}
 			}
 		}
 	}
-		
 
+	if (firstPerson != NULL) {
+		if (sortvalue == 3) {
+			for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
+				for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext) {
+					char firstPerson[40];
+					char secondPerson[40];
+
+					strcpy_s(firstPerson, firstElement->Nachname);
+					strcpy_s(secondPerson, secondElement->Nachname);
+
+					if (strcmp(firstPerson, secondPerson) > 0) {
+						strcpy_s(tempChar, firstElement->Nachname);
+						strcpy_s(firstElement->Nachname, secondElement->Nachname);
+						strcpy_s(secondElement->Nachname, tempChar);
+					}
+				}
+			}
+		}
 	}
-
-
-
-
-
-
-
+	else{
+		printf("Please create a List first!");
+		getchar();
+	}
+}
