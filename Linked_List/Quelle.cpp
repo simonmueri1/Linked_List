@@ -29,7 +29,7 @@ int main() {
 	return 0;
 }
 
-//creator: Michel
+//creator: Michel, Simon
 void sequences() {
 	//define randomness
 	srand((unsigned)time(NULL));
