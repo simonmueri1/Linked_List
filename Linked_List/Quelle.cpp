@@ -264,20 +264,20 @@ struPerson* deleteElements(struPerson* firstPerson, char vorname[40], char nachn
 
 void sortlist(struPerson* firstPerson) {
 
-	struPerson* element1;
-	struPerson* element2;
-	Person* Person1;
-	Person* Person2;
-	int temp;
+	struPerson* firstElement;
+	struPerson* secondElement;
+	int tempInt
+		;
+	char tempChar[40];
 	
 	if (firstPerson != NULL) {
 		if (sortvalue == 1) {
-			for (element1 = firstPerson; element1->pNext != NULL; element1 = element1->pNext) {
-				for (element2 = element1->pNext; element2 != NULL; element2 = element2->pNext) {
-					if (element1->Jahrgang > element2->Jahrgang) {
-						temp = element1->Jahrgang;
-						element1->Jahrgang = element2->Jahrgang;
-						element2->Jahrgang = temp;
+			for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
+				for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext) {
+					if (firstElement->Jahrgang > secondElement->Jahrgang) {
+						tempInt = firstElement->Jahrgang;
+						firstElement->Jahrgang = secondElement->Jahrgang;
+						secondElement->Jahrgang = tempInt;
 					}
 				}
 			}
@@ -294,30 +294,37 @@ void sortlist(struPerson* firstPerson) {
 		
 
 
-		for (element1 = firstPerson; element1 != NULL; element1->pNext) {
-			for (element2 = element1->pNext; element2 != NULL; element2 = element2->pNext){
-
-				//if (strcmp(element2->Vorname, element2->Vorname) > 0) {
-					char temp1 = element1->Vorname[40];
-					element1->Vorname[40] = element2->Vorname[40];
-					element1->Vorname[40] = temp1;
-				//}
-					
-	
-
-						/*temp1 = element1->Vorname;
-						element1->Vorname = element2->Vorname;
-						element2->Vorname = temp2;*/
-
-					
-
-				
+		for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
+			for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext){
+				char Person1[40];
+				char Person2[40];
+				strcpy_s(Person1, firstElement->Vorname);
+				strcpy_s(Person2, secondElement->Vorname);
+				if (strcmp(Person1, Person2) > 0) {
+					strcpy_s(tempChar, firstElement->Vorname);
+					strcpy_s(firstElement->Vorname, secondElement->Vorname);
+					strcpy_s(secondElement->Vorname, tempChar);
+				}			
 			}
 		}
+
+		
 	}
 
 	else if (sortvalue == 3) {
-
+		for (firstElement = firstPerson; firstElement->pNext != NULL; firstElement = firstElement->pNext) {
+			for (secondElement = firstElement->pNext; secondElement != NULL; secondElement = secondElement->pNext) {
+				char firstPerson[40];
+				char secondPerson[40];
+				strcpy_s(firstPerson, firstElement->Nachname);
+				strcpy_s(secondPerson, secondElement->Nachname);
+				if (strcmp(firstPerson, secondPerson) > 0) {
+					strcpy_s(tempChar, firstElement->Nachname);
+					strcpy_s(firstElement->Nachname, secondElement->Nachname);
+					strcpy_s(secondElement->Nachname, tempChar);
+				}
+			}
+		}
 	}
 		
 
